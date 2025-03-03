@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proposal ❤️</title>
+    <link rel="stylesheet" href="pK.css">
+</head>
+
+<body>
+
+    <!-- Popup message -->
+    <div id="popup">
+        Thank you for saying Yes!❤️❤️❤️
+        <img src="path/to/rings.jpg" style="aspect-ratio:1/1">
+    </div>
+
+    <!-- Proposal text -->
+    <div>
+        <b class="loveTEXT">Will You Be Mine?</b>
+        <div class="btn-group">
+            <button id="yes-btn" class="loverbtn">Yes</button>
+            <button id="no-btn" class="loverbtn">No</button>
+        </div>
+    </div>
+
+    <!-- Draggable Love Notes -->
+    <div class="paper heart"></div>
+    <div class="paper image">
+        <p>I LOVE YOU</p>
+        <img src="path/to/image.jpg" />
+    </div>
+    <div class="paper image">
+        <p>and I fallen in</p>
+        <p>Love with You 😍</p>
+        <img src="path/to/rings.jpg" />
+    </div>
+    <div class="paper image">
+        <p>How can be</p>
+        <p>someone so cute ❤️</p>
+        <img src="path/to/rings.jpg" />
+    </div>
+    <div class="paper">
+        <p class="p1">and My Favorite</p>
+        <p class="p2">Person 😍</p>
+    </div>
+    <div class="paper">
+        <p class="p1">You are Cute</p>
+        <p class="p1">Amazing <span style="color: red !important;">❤️</span></p>
+    </div>
+    <div class="paper">
+        <p class="p1">Drag the papers to move!</p>
+    </div>
+
+    <!-- JavaScript Code -->
+    <script>
+        let highestZ = 1;
+
+        // Make papers draggable
+        document.querySelectorAll(".paper").forEach((paper) => {
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            paper.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                offsetX = e.clientX - paper.offsetLeft;
+                offsetY = e.clientY - paper.offsetTop;
+                paper.style.zIndex = highestZ++;
+            });
+
+            document.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+                paper.style.left = `${e.clientX - offsetX}px`;
+                paper.style.top = `${e.clientY - offsetY}px`;
+            });
+
+            document.addEventListener("mouseup", () => {
+                isDragging = false;
+            });
+        });
+
+        // Handle button clicks
+        const noButton = document.getElementById("no-btn");
+        const yesButton = document.getElementById("yes-btn");
+        const popup = document.getElementById("popup");
+
+        // Move "No" button randomly
+        noButton.addEventListener("mouseover", () => {
+            const maxWidth = window.innerWidth - noButton.clientWidth;
+            const maxHeight = window.innerHeight - noButton.clientHeight;
+
+            noButton.style.position = "absolute";
+            noButton.style.left = Math.random() * maxWidth + "px";
+            noButton.style.top = Math.random() * maxHeight + "px";
+        });
+
+        // Show popup when "Yes" is clicked
+        yesButton.addEventListener("click", () => {
+            popup.style.display = "block";
+            popup.classList.add("fade-in");
+        });
+    </script>
+
+</body>
+</html>
